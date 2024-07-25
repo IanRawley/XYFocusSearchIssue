@@ -15,9 +15,10 @@
     <vm:MainViewModel />
   </Design.DataContext>
 	<Grid>
-	<dha:DialogHost x:Name="Dialogs" Identifier="Dialogs" CloseOnClickAway="True">
+	<dha:DialogHost x:Name="Dialogs" Identifier="Dialogs">
 		<dha:DialogHost.DialogContent>
-				<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" XYFocus.NavigationModes="Enabled">
+				<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" XYFocus.NavigationModes="Enabled" 
+					  >
 					<TextBlock Text="I'm a Dialog, you should be trapped!" HorizontalAlignment="Center"
 							   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
 					
