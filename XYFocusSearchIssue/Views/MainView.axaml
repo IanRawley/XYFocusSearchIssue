@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:XYFocusSearchIssue.ViewModels"
+			 xmlns:dha="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+			 
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="XYFocusSearchIssue.Views.MainView"
+             x:DataType="vm:MainViewModel"
+			 XYFocus.NavigationModes="Disabled">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+	<Grid>
+	<dha:DialogHost x:Name="Dialogs" Identifier="Dialogs" CloseOnClickAway="True">
+		<dha:DialogHost.DialogContent>
+				<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" XYFocus.NavigationModes="Enabled">
+					<TextBlock Text="I'm a Dialog, you should be trapped!" HorizontalAlignment="Center"
+							   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+					
+					<Button Content="Close Dialog" 
+							Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dha:DialogHost}, Path=CloseDialogCommand}"
+							Grid.Row="1" Grid.Column="0"
+							Height="70" Width="70"
+							AttachedToVisualTree="Button_AttachedToVisualTree"/>
+					<Button Content="Close Dialog" 
+							Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dha:DialogHost}, Path=CloseDialogCommand}"
+							Grid.Row="1" Grid.Column="1"
+							Height="70" Width="70"/>
+					
+				</Grid>
+		</dha:DialogHost.DialogContent>
+		
+		<RelativePanel XYFocus.NavigationModes="Enabled">
+			<Border BorderBrush="Black" BorderThickness="2"
+					RelativePanel.AlignLeftWithPanel="True"
+					RelativePanel.AlignRightWithPanel="True"
+					RelativePanel.AlignBottomWithPanel="True"
+					Height="150">
+				<StackPanel>
+					<TextBlock Text="When the dialog is open, you shouldn't be able to XY focus into here." HorizontalAlignment="Center"/>
+					<TextBox Text="I'm just here to focus on."/>
+					<Button Content="Open the Dialog" IsDefault="True" HorizontalAlignment="Stretch" 
+							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+							Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dha:DialogHost}, Path=OpenDialogCommand}"
+							
+					/>
+					
+				</StackPanel>
+			</Border>
+		</RelativePanel>
+		
+	</dha:DialogHost>
+
+	</Grid>
+</UserControl>
